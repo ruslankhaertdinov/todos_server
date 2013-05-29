@@ -3,11 +3,8 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>String</th>
     <th>Order</th>
-    <th>Integer</th>
     <th>Done</th>
-    <th>Boolean</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,11 +13,8 @@
 <% @todos.each do |todo| %>
   <tr>
     <td><%= todo.title %></td>
-    <td><%= todo.string %></td>
     <td><%= todo.order %></td>
-    <td><%= todo.integer %></td>
     <td><%= todo.done %></td>
-    <td><%= todo.boolean %></td>
     <td><%= link_to 'Show', todo %></td>
     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
     <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

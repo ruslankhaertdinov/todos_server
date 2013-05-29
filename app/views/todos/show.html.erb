@@ -6,30 +6,14 @@
 </p>
 
 <p>
-  <b>String:</b>
-  <%= @todo.string %>
-</p>
-
-<p>
   <b>Order:</b>
   <%= @todo.order %>
-</p>
-
-<p>
-  <b>Integer:</b>
-  <%= @todo.integer %>
 </p>
 
 <p>
   <b>Done:</b>
   <%= @todo.done %>
 </p>
-
-<p>
-  <b>Boolean:</b>
-  <%= @todo.boolean %>
-</p>
-
 
 <%= link_to 'Edit', edit_todo_path(@todo) %> |
 <%= link_to 'Back', todos_path %>
