@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Order</th>
+    <th>Due date</th>
     <th>Done</th>
     <th></th>
     <th></th>
@@ -13,7 +13,7 @@
 <% @todos.each do |todo| %>
   <tr>
     <td><%= todo.title %></td>
-    <td><%= todo.order %></td>
+    <td><%= todo.due_date %></td>
     <td><%= todo.done %></td>
     <td><%= link_to 'Show', todo %></td>
     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
