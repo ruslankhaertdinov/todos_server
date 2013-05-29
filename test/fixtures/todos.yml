@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  string: MyString
+  order: MyString
+  integer: MyString
+  done: MyString
+  boolean: MyString
+
+two:
+  title: MyString
+  string: MyString
+  order: MyString
+  integer: MyString
+  done: MyString
+  boolean: MyString
