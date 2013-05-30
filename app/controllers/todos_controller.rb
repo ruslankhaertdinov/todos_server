@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.ordered
+    @todos = Todo.full_ordered
     @todo = Todo.new
 
     respond_to do |format|

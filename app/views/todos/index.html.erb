@@ -1,15 +1,18 @@
 <%= render 'form' %>
 
-<table>
+<table class="table table-hover">
+  <tr>
+    <th class="important">Important</th>
+    <th>Title</th>
+    <th class="due_date">Due date</th>
+    <th class="done">Done</th>
+  </tr>
 <% @todos.each do |todo| %>
   <tr>
-    <td><%= check_box_tag 'important', 'task', todo.important %></td>
+    <td><%= check_box_tag 'important', 'task', todo.important, disabled: true %></td>
     <td><%= todo.title %></td>
-    <td><%= todo.due_date %></td>
+    <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
     <td><%= todo.done %></td>
-    <td><%= link_to 'Show', todo %></td>
-    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-    <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

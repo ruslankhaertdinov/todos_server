@@ -4,6 +4,7 @@ class Todo < ActiveRecord::Base
   before_save :set_order_value
 
   scope :ordered, -> { order('created_at ASC') }
+  scope :full_ordered, -> { order('important DESC, due_date ASC, created_at DESC') }
 
   protected
 
