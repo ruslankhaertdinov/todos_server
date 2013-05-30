@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529183017) do
+ActiveRecord::Schema.define(:version => 20130530182120) do
 
   create_table "todos", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130529183017) do
     t.datetime "due_date"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.boolean  "important",  :default => false
   end
 
 end

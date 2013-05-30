@@ -3,6 +3,7 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.ordered
+    @todo = Todo.new
 
     respond_to do |format|
       format.html # index.html.erb

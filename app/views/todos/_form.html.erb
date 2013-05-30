@@ -1,25 +1,10 @@
-<%= form_for(@todo) do |f| %>
-  <% if @todo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+<%= form_for @todo, html: {class: 'form-inline'} do |f| %>
 
-      <ul>
-      <% @todo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <legend>Todos</legend>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :due_date %><br />
-    <%= f.text_field :due_date, id: 'datepicker' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <%= f.text_field :title, required: true, class: 'input' %>
+
+      <%= f.text_field :due_date, id: 'datepicker', class: 'span3' %>
+
+      <%= f.submit %>
 <% end %>
