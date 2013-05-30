@@ -23,10 +23,10 @@ $(function () {
     changeMonth:true,
     changeYear:true,
 
-    //need refactor
-    showOn: "button",
-    buttonImage: "calendar.gif",
-    buttonImageOnly: true,
+//    need refactor
+//    showOn: "button",
+//    buttonImage: "calendar.gif",
+//    buttonImageOnly: true,
 
     minDate: 0
   });

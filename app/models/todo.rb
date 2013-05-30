@@ -1,5 +1,5 @@
 class Todo < ActiveRecord::Base
-  attr_accessible :done, :order, :title, :due_date
+  attr_accessible :done, :order, :title, :due_date, :important
 
   before_save :set_order_value
 
