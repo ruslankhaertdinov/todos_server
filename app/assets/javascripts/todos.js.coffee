@@ -4,13 +4,14 @@
 $(document).ready ->
   $(document).on 'click', '.done_state', ->
     task_id = $(this).parent('td').data('id')
+
     if $(this).is(':checked')
       done = true
     else
       done = false
 
-    $.ajax
-      url: "/todos/change_state",
-      data:
-        done: done
-        id: task_id
+    data =
+      done: done
+      id: task_id
+
+    $.get "/todos/change_state", data
