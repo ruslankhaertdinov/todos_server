@@ -1,5 +1,7 @@
 TodoServer::Application.routes.draw do
-  resources :todos
+  resources :todos do
+    get 'change_state', on: :collection
+  end
 
 
   # The priority is based upon order of creation:

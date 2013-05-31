@@ -11,6 +11,13 @@ class TodosController < ApplicationController
     end
   end
 
+  def change_state
+    todo = Todo.find(params[:id])
+    todo.done = params[:done]
+    todo.save
+    render json: todo
+  end
+
   # GET /todos/1
   # GET /todos/1.json
   def show

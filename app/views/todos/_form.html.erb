@@ -1,7 +1,7 @@
 <%= form_for @todo, html: {class: 'form-inline'} do |f| %>
     <legend>Todos</legend>
-    <%= f.text_field :title, required: true, class: 'input' %>
-    <%= f.text_field :due_date, id: 'datepicker', class: 'input-small' %>
+    <%= f.text_field :title, required: true, class: 'input', placeholder: 'What needs to be done?' %>
+    <%= f.text_field :due_date, id: 'datepicker', class: 'input-small', placeholder: 'Due date' %>
     <label class="checkbox">
       <%= f.check_box :important %>
       Important

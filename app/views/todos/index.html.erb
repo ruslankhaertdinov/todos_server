@@ -1,5 +1,12 @@
 <%= render 'form' %>
 
+<% unless @todos.empty? %>
+    <label class="checkbox">
+      <%= check_box_tag 'mark', 'all', false, id: 'mark_all' %>
+      Mark all as complete
+    </label>
+<% end %>
+
 <table class="table table-hover">
   <tr>
     <th class="width_14"></th>
@@ -7,14 +14,14 @@
     <th class="due_date">Due date</th>
     <th class="done">Done</th>
   </tr>
-<% @todos.each do |todo| %>
-  <tr>
-    <td><i class="icon-star<%= todo.important ? '' : '-empty' %>"></i></td>
-    <td><%= todo.title %></td>
-    <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
-    <td><%= check_box_tag 'task', 'state', todo.done %></td>
-  </tr>
-<% end %>
+  <% @todos.each do |todo| %>
+      <tr>
+        <td><i class="icon-star<%= todo.important ? '' : '-empty' %>"></i></td>
+        <td><%= todo.title %></td>
+        <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
+        <td data-id="<%= todo.id %>"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
+      </tr>
+  <% end %>
 </table>
 
 
