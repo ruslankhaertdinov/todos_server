@@ -15,7 +15,10 @@
  *= require_tree .
  */
 
-th.important, th.due_date, th.done {
+th.due_date, th.done {
     width: 75px ;
 }
 
+.width_14 {
+    width: 14px;
+}

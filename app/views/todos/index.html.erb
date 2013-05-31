@@ -2,17 +2,17 @@
 
 <table class="table table-hover">
   <tr>
-    <th class="important">Important</th>
+    <th class="width_14"></th>
     <th>Title</th>
     <th class="due_date">Due date</th>
     <th class="done">Done</th>
   </tr>
 <% @todos.each do |todo| %>
   <tr>
-    <td><%= check_box_tag 'important', 'task', todo.important, disabled: true %></td>
+    <td><i class="icon-star<%= todo.important ? '' : '-empty' %>"></i></td>
     <td><%= todo.title %></td>
     <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
-    <td><%= todo.done %></td>
+    <td><%= check_box_tag 'task', 'state', todo.done %></td>
   </tr>
 <% end %>
 </table>
