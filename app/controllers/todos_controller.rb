@@ -3,10 +3,6 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     get_variables
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @todos }
-    end
   end
 
   def change
@@ -32,8 +28,9 @@ class TodosController < ApplicationController
   end
 
   def create
+    @todo = Todo.new(params[:todo])
+    @todo.save
     get_variables
-    @todo = Todo.new if @todo.save
   end
 
   def update
@@ -53,7 +50,7 @@ class TodosController < ApplicationController
   private
 
   def get_variables
-    @todo = Todo.new(params[:todo])
+    @todo = Todo.new
     @todos = Todo.order_by_importance
     @items_left = Todo.where(done: false).count
     @items_complete = Todo.where(done: true).count
