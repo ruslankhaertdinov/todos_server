@@ -45,4 +45,6 @@ $(document).ready ->
       if event.which == 13
         $(el).text(title_new)
         $.get "/todos/change", (title: title_new, id: task_id)
+      else if event.which == 27
+        $(el).text(title_old)
 
