@@ -18,6 +18,15 @@ class TodosController < ApplicationController
     render json: todo
   end
 
+  def mark_all
+    done_state = params[:mark_all]
+    Todo.all.each do |todo|
+      todo.done = done_state
+      todo.save(validate: false)
+    end
+    render json: {marked_all: true}
+  end
+
   def change_importance
     todo = Todo.find(params[:id])
     todo.important = params[:important]

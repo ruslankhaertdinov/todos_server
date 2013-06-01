@@ -4,6 +4,7 @@
 $(document).ready ->
   $(document).on 'click', '.done_state', ->
     task_id = $(this).parents('tr').data('id')
+    $('#mark_all').prop(checked: false)
     if $(this).is(':checked')
       done = true
     else
@@ -30,7 +31,8 @@ $(document).ready ->
     if $(this).is(':checked')
       checkboxes.prop(checked: true)
     else
-      console.log 'unchecked'
       checkboxes.prop(checked: false)
 
-  changeState: (ids_array) ->
+    data =
+      mark_all: $(this).is(':checked')
+    $.get "/todos/mark_all", data
