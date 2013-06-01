@@ -2,15 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+  saveChanges = (opts) ->
+    $.get "/todos/change", (opts)
+
   $(document).on 'click', '.done_state', ->
     task_id = $(this).parents('tr').data('id')
     done = $(this).is(':checked')
-    $.get "/todos/change", (done: done, id: task_id)
+    saveChanges(done: done, id: task_id)
 
   $(document).on 'click', 'td.importance', ->
     task_id = $(this).parents('tr').data('id')
     important = $(this).children('i').hasClass('icon-star-empty')
-    $.get "/todos/change", (important: important, id: task_id)
+    saveChanges(important: important, id: task_id)
 
   $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
@@ -43,14 +46,11 @@ $(document).ready ->
 
     $(document).on 'keydown', input, (event) ->
       title_new = $(input).val()
-      if event.which == 13
+      if event.which == 13 and title_new.length
         $(el).text(title_new)
-        $.get "/todos/change", (title: title_new, id: task_id)
+        saveChanges(title: title_new, id: task_id)
       else if event.which == 27
         $(el).text(title_old)
-
-    $(document).on 'blur', input, (event) ->
-      $(el).text(title_old)
 
   $(document).on 'keydown', '#todo_title', ->
     if event.which == 13
