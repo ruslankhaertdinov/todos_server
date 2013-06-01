@@ -12,7 +12,12 @@ $(document).ready ->
     data =
       done: done
       id: task_id
-    $.get "/todos/change_state", data
+    $.get "/todos/change_state", data, (data) ->
+      $('#items_left').text(data.items_left)
+      if !data.items_left
+        $('#mark_all').prop(checked: true)
+      else
+        $('#mark_all').prop(checked: false)
 
   $(document).on 'click', 'td.importance', ->
     task_id = $(this).parents('tr').data('id')
@@ -35,4 +40,5 @@ $(document).ready ->
 
     data =
       mark_all: $(this).is(':checked')
-    $.get "/todos/mark_all", data
+    $.get "/todos/mark_all", data, (data) ->
+      $('#items_left').text(data.items_left)

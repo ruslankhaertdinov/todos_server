@@ -15,7 +15,7 @@ class TodosController < ApplicationController
     todo = Todo.find(params[:id])
     todo.done = params[:done]
     todo.save
-    render json: todo
+    render json: {items_left: items_left}
   end
 
   def mark_all
@@ -24,7 +24,7 @@ class TodosController < ApplicationController
       todo.done = done_state
       todo.save(validate: false)
     end
-    render json: {marked_all: true}
+    render json: {items_left: items_left}
   end
 
   def change_importance
@@ -33,6 +33,7 @@ class TodosController < ApplicationController
     todo.save
     render json: todo
   end
+
 
   # GET /todos/1
   # GET /todos/1.json
@@ -103,5 +104,11 @@ class TodosController < ApplicationController
       format.html { redirect_to todos_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def items_left
+    Todo.where(done: false).count
   end
 end

@@ -2,7 +2,7 @@
 
 <% unless @todos.empty? %>
     <label class="checkbox">
-      <%= check_box_tag 'mark', 'all', all_todos_checked?, id: 'mark_all' %>
+      <%= check_box_tag 'mark', 'all', items_left == 0, id: 'mark_all' %>
       Mark all as complete
     </label>
 <% end %>
@@ -19,5 +19,8 @@
       </tr>
   <% end %>
 </table>
+<div class="items_left">
+  <span id="items_left"><%= items_left %></span>  Items left
+</div>
 
 

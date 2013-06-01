@@ -1,5 +1,5 @@
 module TodosHelper
-  def all_todos_checked?
-    Todo.where(done: false).count == 0
+  def items_left
+    Todo.where(done: false).count
   end
 end
