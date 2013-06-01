@@ -48,3 +48,8 @@ $(document).ready ->
       else if event.which == 27
         $(el).text(title_old)
 
+  $(document).on 'keydown', '#todo_title', ->
+    if event.which == 13
+      $('form#new_todo').submit
+
+
