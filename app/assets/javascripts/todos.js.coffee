@@ -32,13 +32,16 @@ $(document).ready ->
         $("tr[data-id=#{todo.id}] i").removeClass("icon-star").addClass('icon-star-empty')
 
   $('#mark_all').change ->
-    checkboxes = $('.done_state')
+    all_checkboxes = $('.done_state')
+
     if $(this).is(':checked')
-      checkboxes.prop(checked: true)
+      all_checkboxes.prop(checked: true)
     else
-      checkboxes.prop(checked: false)
+      all_checkboxes.prop(checked: false)
+
+    unchecked = $("input.done_state:not(:checked)").length
+    $('#items_left').text(unchecked)
 
     data =
       mark_all: $(this).is(':checked')
-    $.get "/todos/mark_all", data, (data) ->
-      $('#items_left').text(data.items_left)
+    $.get "/todos/mark_all", data
