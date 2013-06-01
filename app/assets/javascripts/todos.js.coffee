@@ -46,7 +46,7 @@ $(document).ready ->
 
     $(document).on 'keydown', input, (event) ->
       title_new = $(input).val()
-      if event.which == 13 and title_new.length
+      if event.which == 13 and title_new and title_new.length
         $(el).text(title_new)
         saveChanges(title: title_new, id: task_id)
       else if event.which == 27
