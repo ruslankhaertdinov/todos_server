@@ -11,7 +11,7 @@
   <% @todos.each do |todo| %>
       <tr data-id="<%= todo.id %>">
         <td class="width_14"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
-        <td><%= todo.title %></td>
+        <td class="title"><%= todo.title %></td>
         <td class="importance width_14">
           <i class="icon-star<%= todo.important ? '' : '-empty' %>"></i>
         </td>

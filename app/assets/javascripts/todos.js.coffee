@@ -37,3 +37,13 @@ $(document).ready ->
   $(document).on 'click', '#clear_complete_btn', ->
     if $('input.done_state:checked').length > 0
       $.get "/todos/clear_complete"
+
+  $(document).on 'dblclick', 'td.title', ->
+    title = $(this).text()
+    id = $(this).parents('tr').data('id')
+    $(this).text('')
+    $(this).append($('<input type="text"/>').val(title))
+    $(document).on 'keydown', "tr[data-id=#{id}] td.title input", (event) ->
+      new_text = $("tr[data-id=#{id}] td.title input").val()
+      if event.which == 13
+        $("tr[data-id=#{id}] td.title").text(new_text)
