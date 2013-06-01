@@ -40,6 +40,7 @@ $(document).ready ->
     $(this).html($('<input type="text"/>').val(title_old))
     el = "tr[data-id=#{task_id}] td.title"
     input = el + " input"
+
     $(document).on 'keydown', input, (event) ->
       title_new = $(input).val()
       if event.which == 13
@@ -47,6 +48,9 @@ $(document).ready ->
         $.get "/todos/change", (title: title_new, id: task_id)
       else if event.which == 27
         $(el).text(title_old)
+
+    $(document).on 'blur', input, (event) ->
+      $(el).text(title_old)
 
   $(document).on 'keydown', '#todo_title', ->
     if event.which == 13
