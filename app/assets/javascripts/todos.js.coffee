@@ -18,11 +18,12 @@ $(document).ready ->
 
   $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
-
     if $(this).is(':checked')
       all_checkboxes.prop(checked: true)
+      $('#clear_complete_btn').show()
     else
       all_checkboxes.prop(checked: false)
+      $('#clear_complete_btn').hide()
 
     unchecked = $("input.done_state:not(:checked)").length
     if unchecked is 1

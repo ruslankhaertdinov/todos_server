@@ -1,6 +1,6 @@
 <%= form_for @todo, html: {class: 'form-inline'}, remote: true do |f| %>
     <legend>Todos</legend>
-    <%= f.text_field :title, required: true, class: 'input', placeholder: 'What needs to be done?' %>
+    <%= f.text_field :title, required: true, class: 'input-xxlarge', placeholder: 'What needs to be done?' %>
     <label class="checkbox">
       <%= f.check_box :important %>
       Important

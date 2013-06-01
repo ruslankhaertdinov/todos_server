@@ -18,6 +18,9 @@
       </tr>
   <% end %>
 </table>
-<div class="items_left">
-  <span id="items_left"><%= pluralize(@items_left, 'item') %> left</span>
-</div>
+<hr>
+<div id="items_left"><%= pluralize(@items_left, 'item') %> left</div>
+<% unless @items_complete.zero? %>
+    <%= button_tag "Clear completed items", id: 'clear_complete_btn', class: 'btn btn-large btn-primary btn-block' %>
+<% end %>
+

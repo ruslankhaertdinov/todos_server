@@ -5,6 +5,7 @@ class TodosController < ApplicationController
     @todos = Todo.order_by_importance
     @todo = Todo.new
     @items_left = items_left
+    @items_complete = items_complete
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }
@@ -18,6 +19,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
     @todos = Todo.order_by_importance
     @items_left = items_left
+    @items_complete = items_complete
   end
 
   def mark_all
@@ -29,6 +31,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
     @todos = Todo.order_by_importance
     @items_left = items_left
+    @items_complete = items_complete
   end
 
   def change_importance
@@ -38,6 +41,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
     @todos = Todo.order_by_importance
     @items_left = items_left
+    @items_complete = items_complete
   end
 
   def create
@@ -47,7 +51,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        @todo = Todo.new(params[:todo])
+        @todo = Todo.new
         format.js
       else
         format.html { render action: "index" }
@@ -73,6 +77,10 @@ class TodosController < ApplicationController
   private
 
   def items_left
-    @items ||= Todo.where(done: false).count
+    @letf ||= Todo.where(done: false).count
+  end
+
+  def items_complete
+    @complete ||= Todo.where(done: true).count
   end
 end
