@@ -20,9 +20,8 @@ class TodosController < ApplicationController
 
   def mark_all
     get_variables
-    done_state = params[:mark_all]
     Todo.all.each do |todo|
-      todo.done = done_state
+      todo.done = params[:mark_all]
       todo.save(validate: false)
     end
   end
@@ -53,18 +52,10 @@ class TodosController < ApplicationController
 
   private
 
-  def items_left
-    @letf ||= Todo.where(done: false).count
-  end
-
-  def items_complete
-    @complete ||= Todo.where(done: true).count
-  end
-
   def get_variables
     @todo = Todo.new(params[:todo])
     @todos = Todo.order_by_importance
-    @items_left = items_left
-    @items_complete = items_complete
+    @items_left = Todo.where(done: false).count
+    @items_complete = Todo.where(done: true).count
   end
 end
