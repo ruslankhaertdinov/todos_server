@@ -1,25 +1,3 @@
-<%= render 'form' %>
-
-<% unless @todos.empty? %>
-    <label class="checkbox">
-      <%= check_box_tag 'mark', 'all', @items_left.zero?, id: 'mark_all' %>
-      Mark all as complete
-    </label>
-<% end %>
-
-<table class="table table-hover">
-  <% @todos.each do |todo| %>
-      <tr data-id="<%= todo.id %>">
-        <td class="width_14"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
-        <td><%= todo.title %></td>
-        <td class="importance width_14">
-          <i class="icon-star<%= todo.important ? '' : '-empty' %>"></i>
-        </td>
-      </tr>
-  <% end %>
-</table>
-<div class="items_left">
-  <span id="items_left"><%= pluralize(@items_left, 'item') %> left</span>
+<div id="index_page">
+  <%= render 'index' %>
 </div>
-
-

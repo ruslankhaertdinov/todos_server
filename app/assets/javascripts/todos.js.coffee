@@ -31,7 +31,7 @@ $(document).ready ->
       else
         $("tr[data-id=#{todo.id}] i").removeClass("icon-star").addClass('icon-star-empty')
 
-  $('#mark_all').change ->
+  $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
 
     if $(this).is(':checked')

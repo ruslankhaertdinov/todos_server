@@ -1,10 +1,9 @@
-<%= form_for @todo, html: {class: 'form-inline'} do |f| %>
+<%= form_for @todo, html: {class: 'form-inline'}, remote: true do |f| %>
     <legend>Todos</legend>
     <%= f.text_field :title, required: true, class: 'input', placeholder: 'What needs to be done?' %>
-    <%= f.text_field :due_date, id: 'datepicker', class: 'input-small', placeholder: 'Due date' %>
     <label class="checkbox">
       <%= f.check_box :important %>
       Important
     </label>
-    <%= button_tag 'Create', type: 'submit', id: 'submit_btn' %>
+    <%= button_tag 'Create', type: 'submit', id: 'submit_btn', class: 'btn btn-success btn-small' %>
 <% end %>
