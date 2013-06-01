@@ -10,25 +10,25 @@ class TodosController < ApplicationController
   end
 
   def change
-    get_variables
     todo = Todo.find(params[:id])
     todo.done = params[:done] if params[:done].present?
     todo.important = params[:important] if params[:important].present?
     todo.title = params[:title] if params[:title].present?
     todo.save
+    get_variables
   end
 
   def mark_all
-    get_variables
     Todo.all.each do |todo|
       todo.done = params[:mark_all]
       todo.save(validate: false)
     end
+    get_variables
   end
 
   def clear_complete
-    get_variables
     Todo.where(done: true).delete_all
+    get_variables
   end
 
   def create
