@@ -44,3 +44,7 @@ div.footer {
     line-height: 31px;
     font-size: 20px;
 }
+
+.del {
+    text-decoration: line-through;
+}
