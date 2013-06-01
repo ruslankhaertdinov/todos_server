@@ -15,7 +15,9 @@ class TodosController < ApplicationController
     todo = Todo.find(params[:id])
     todo.done = params[:done]
     todo.save
-    render json: {items_left: view_context.pluralize(items_left, 'item')}
+    @todo = Todo.new(params[:todo])
+    @todos = Todo.order_by_importance
+    @items_left = items_left
   end
 
   def mark_all
@@ -24,14 +26,18 @@ class TodosController < ApplicationController
       todo.done = done_state
       todo.save(validate: false)
     end
-    render json: {items_left: items_left}
+    @todo = Todo.new(params[:todo])
+    @todos = Todo.order_by_importance
+    @items_left = items_left
   end
 
   def change_importance
     todo = Todo.find(params[:id])
     todo.important = params[:important]
     todo.save
-    render json: todo
+    @todo = Todo.new(params[:todo])
+    @todos = Todo.order_by_importance
+    @items_left = items_left
   end
 
   def create
