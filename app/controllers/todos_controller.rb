@@ -2,62 +2,38 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.order_by_importance
-    @todo = Todo.new
-    @items_left = items_left
-    @items_complete = items_complete
+    get_variables
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }
     end
   end
 
-  def change_state
+  def change
+    get_variables
     todo = Todo.find(params[:id])
-    todo.done = params[:done]
+    todo.done = params[:done] if params[:done].present?
+    todo.important = params[:important] if params[:important].present?
     todo.save
-    @todo = Todo.new(params[:todo])
-    @todos = Todo.order_by_importance
-    @items_left = items_left
-    @items_complete = items_complete
   end
 
   def mark_all
+    get_variables
     done_state = params[:mark_all]
     Todo.all.each do |todo|
       todo.done = done_state
       todo.save(validate: false)
     end
-    @todo = Todo.new(params[:todo])
-    @todos = Todo.order_by_importance
-    @items_left = items_left
-    @items_complete = items_complete
   end
 
-  def change_importance
-    todo = Todo.find(params[:id])
-    todo.important = params[:important]
-    todo.save
-    @todo = Todo.new(params[:todo])
-    @todos = Todo.order_by_importance
-    @items_left = items_left
-    @items_complete = items_complete
+  def clear_complete
+    get_variables
+    Todo.where(done: true).delete_all
   end
 
   def create
-    @todo = Todo.new(params[:todo])
-    @todos = Todo.order_by_importance
-    @items_left = items_left
-
-    respond_to do |format|
-      if @todo.save
-        @todo = Todo.new
-        format.js
-      else
-        format.html { render action: "index" }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
+    get_variables
+    @todo = Todo.new if @todo.save
   end
 
   def update
@@ -82,5 +58,12 @@ class TodosController < ApplicationController
 
   def items_complete
     @complete ||= Todo.where(done: true).count
+  end
+
+  def get_variables
+    @todo = Todo.new(params[:todo])
+    @todos = Todo.order_by_importance
+    @items_left = items_left
+    @items_complete = items_complete
   end
 end

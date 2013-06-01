@@ -6,7 +6,7 @@ $(document).ready ->
     task_id = $(this).parents('tr').data('id')
     done = $(this).is(':checked')
     data = (done: done, id: task_id)
-    $.get "/todos/change_state", data
+    $.get "/todos/change", data
 
   $(document).on 'click', 'td.importance', ->
     task_id = $(this).parents('tr').data('id')
@@ -14,16 +14,14 @@ $(document).ready ->
     data =
       important: important
       id: task_id
-    $.get "/todos/change_importance", data
+    $.get "/todos/change", data
 
   $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
     if $(this).is(':checked')
       all_checkboxes.prop(checked: true)
-      $('#clear_complete_btn').show()
     else
       all_checkboxes.prop(checked: false)
-      $('#clear_complete_btn').hide()
 
     unchecked = $("input.done_state:not(:checked)").length
     if unchecked is 1
@@ -35,3 +33,7 @@ $(document).ready ->
     data =
       mark_all: $(this).is(':checked')
     $.get "/todos/mark_all", data
+
+  $(document).on 'click', '#clear_complete_btn', ->
+    if $('input.done_state:checked').length > 0
+      $.get "/todos/clear_complete"
