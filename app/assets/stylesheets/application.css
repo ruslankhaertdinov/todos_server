@@ -23,6 +23,6 @@ th.due_date, th.done {
     width: 14px;
 }
 
-i.importance:hover {
+td.importance:hover {
     cursor: pointer;
 }

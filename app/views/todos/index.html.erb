@@ -16,8 +16,8 @@
   </tr>
   <% @todos.each do |todo| %>
       <tr data-id="<%= todo.id %>">
-        <td class="importance_td">
-          <i class="icon-star<%= todo.important ? '' : '-empty' %> importance"></i>
+        <td class="importance">
+          <i class="icon-star<%= todo.important ? '' : '-empty' %>"></i>
         </td>
         <td><%= todo.title %></td>
         <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
