@@ -2,9 +2,9 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.with_due_date + Todo.without_due_date
+    @todos = Todo.order_by_importance
     @todo = Todo.new
-
+    @items_left = items_left
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @todos }
@@ -15,7 +15,7 @@ class TodosController < ApplicationController
     todo = Todo.find(params[:id])
     todo.done = params[:done]
     todo.save
-    render json: {items_left: items_left}
+    render json: {items_left: view_context.pluralize(items_left, 'item')}
   end
 
   def mark_all
@@ -109,6 +109,6 @@ class TodosController < ApplicationController
   private
 
   def items_left
-    Todo.where(done: false).count
+    @items ||= Todo.where(done: false).count
   end
 end

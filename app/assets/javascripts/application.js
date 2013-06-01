@@ -16,19 +16,3 @@
 //= require bootstrap.min
 //= require_tree .
 
-$(function () {
-  $("#datepicker").datepicker({
-    showOtherMonths:true,
-    selectOtherMonths:true,
-    changeMonth:true,
-    changeYear:true,
-
-//    need refactor
-//    showOn: "button",
-//    buttonImage: "calendar.gif",
-//    buttonImageOnly: true,
-
-    minDate: 0
-  });
-  $("#datepicker").datepicker("option", "dateFormat", "dd.mm.yy");
-});

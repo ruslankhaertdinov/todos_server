@@ -13,7 +13,7 @@ $(document).ready ->
       done: done
       id: task_id
     $.get "/todos/change_state", data, (data) ->
-      $('#items_left').text(data.items_left)
+      $('#items_left').text(data.items_left + ' left')
       if !data.items_left
         $('#mark_all').prop(checked: true)
       else
@@ -40,7 +40,11 @@ $(document).ready ->
       all_checkboxes.prop(checked: false)
 
     unchecked = $("input.done_state:not(:checked)").length
-    $('#items_left').text(unchecked)
+    if unchecked is 1
+      text = 'item left'
+    else
+      text = 'items left'
+    $('#items_left').text(unchecked + ' ' + text)
 
     data =
       mark_all: $(this).is(':checked')

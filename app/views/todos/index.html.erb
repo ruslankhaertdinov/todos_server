@@ -2,7 +2,7 @@
 
 <% unless @todos.empty? %>
     <label class="checkbox">
-      <%= check_box_tag 'mark', 'all', items_left == 0, id: 'mark_all' %>
+      <%= check_box_tag 'mark', 'all', @items_left.zero?, id: 'mark_all' %>
       Mark all as complete
     </label>
 <% end %>
@@ -12,7 +12,6 @@
       <tr data-id="<%= todo.id %>">
         <td class="width_14"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
         <td><%= todo.title %></td>
-        <td class="width_75"><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
         <td class="importance width_14">
           <i class="icon-star<%= todo.important ? '' : '-empty' %>"></i>
         </td>
@@ -20,7 +19,7 @@
   <% end %>
 </table>
 <div class="items_left">
-  <span id="items_left"><%= items_left %></span>  Items left
+  <span id="items_left"><%= pluralize(@items_left, 'item') %> left</span>
 </div>
 
 
