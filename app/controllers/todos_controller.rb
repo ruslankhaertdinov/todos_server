@@ -1,6 +1,5 @@
 class TodosController < ApplicationController
-  # GET /todos
-  # GET /todos.json
+
   def index
     get_variables
   end
@@ -31,20 +30,6 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
     @todo.save
     get_variables
-  end
-
-  def update
-    @todo = Todo.find(params[:id])
-
-    respond_to do |format|
-      if @todo.update_attributes(params[:todo])
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   private

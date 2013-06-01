@@ -38,3 +38,9 @@ div.footer {
 .margin_20 {
     margin: 20px;
 }
+
+#todo_title {
+    height: 43px;
+    line-height: 31px;
+    font-size: 20px;
+}

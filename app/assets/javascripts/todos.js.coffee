@@ -53,4 +53,6 @@ $(document).ready ->
       $('form#new_todo').submit ->
         if $('#todo_title').val().length == 0
           return false
+    else if event.which == 27
+      $('#todo_title').val('')
 
