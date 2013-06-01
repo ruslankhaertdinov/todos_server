@@ -5,16 +5,12 @@ $(document).ready ->
   $(document).on 'click', '.done_state', ->
     task_id = $(this).parents('tr').data('id')
     done = $(this).is(':checked')
-    data = (done: done, id: task_id)
-    $.get "/todos/change", data
+    $.get "/todos/change", (done: done, id: task_id)
 
   $(document).on 'click', 'td.importance', ->
     task_id = $(this).parents('tr').data('id')
     important = $(this).children('i').hasClass('icon-star-empty')
-    data =
-      important: important
-      id: task_id
-    $.get "/todos/change", data
+    $.get "/todos/change", (important: important, id: task_id)
 
   $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
@@ -39,11 +35,14 @@ $(document).ready ->
       $.get "/todos/clear_complete"
 
   $(document).on 'dblclick', 'td.title', ->
-    title = $(this).text()
-    id = $(this).parents('tr').data('id')
-    $(this).text('')
-    $(this).append($('<input type="text"/>').val(title))
-    $(document).on 'keydown', "tr[data-id=#{id}] td.title input", (event) ->
-      new_text = $("tr[data-id=#{id}] td.title input").val()
+    title_old = $(this).text()
+    task_id = $(this).parents('tr').data('id')
+    $(this).html($('<input type="text"/>').val(title_old))
+    el = "tr[data-id=#{task_id}] td.title"
+    input = el + " input"
+    $(document).on 'keydown', input, (event) ->
+      title_new = $(input).val()
       if event.which == 13
-        $("tr[data-id=#{id}] td.title").text(new_text)
+        $(el).text(title_new)
+        $.get "/todos/change", (title: title_new, id: task_id)
+
