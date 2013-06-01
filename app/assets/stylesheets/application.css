@@ -34,3 +34,7 @@ td.importance:hover {
 div.footer {
     margin-top: 30px !important;
 }
+
+.margin_20 {
+    margin: 20px;
+}
