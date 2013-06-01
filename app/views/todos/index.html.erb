@@ -8,20 +8,14 @@
 <% end %>
 
 <table class="table table-hover">
-  <tr>
-    <th class="width_14"></th>
-    <th>Title</th>
-    <th class="due_date">Due date</th>
-    <th class="done">Done</th>
-  </tr>
   <% @todos.each do |todo| %>
       <tr data-id="<%= todo.id %>">
-        <td class="importance">
+        <td class="width_14"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
+        <td><%= todo.title %></td>
+        <td class="width_75"><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
+        <td class="importance width_14">
           <i class="icon-star<%= todo.important ? '' : '-empty' %>"></i>
         </td>
-        <td><%= todo.title %></td>
-        <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
-        <td><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
       </tr>
   <% end %>
 </table>

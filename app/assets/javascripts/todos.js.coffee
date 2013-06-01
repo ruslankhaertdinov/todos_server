@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
   $(document).on 'click', '.done_state', ->
-    task_id = $(this).parent('tr').data('id')
+    task_id = $(this).parents('tr').data('id')
     if $(this).is(':checked')
       done = true
     else
@@ -24,3 +24,13 @@ $(document).ready ->
         $("tr[data-id=#{todo.id}] i").removeClass("icon-star-empty").addClass('icon-star')
       else
         $("tr[data-id=#{todo.id}] i").removeClass("icon-star").addClass('icon-star-empty')
+
+  $('#mark_all').change ->
+    checkboxes = $('.done_state')
+    if $(this).is(':checked')
+      checkboxes.prop(checked: true)
+    else
+      console.log 'unchecked'
+      checkboxes.prop(checked: false)
+
+  changeState: (ids_array) ->
