@@ -22,3 +22,7 @@ th.due_date, th.done {
 .width_14 {
     width: 14px;
 }
+
+i.importance:hover {
+    cursor: pointer;
+}

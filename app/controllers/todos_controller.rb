@@ -18,6 +18,13 @@ class TodosController < ApplicationController
     render json: todo
   end
 
+  def change_importance
+    todo = Todo.find(params[:id])
+    todo.important = params[:important]
+    todo.save
+    render json: todo
+  end
+
   # GET /todos/1
   # GET /todos/1.json
   def show

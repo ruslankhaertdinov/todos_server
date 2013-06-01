@@ -15,11 +15,13 @@
     <th class="done">Done</th>
   </tr>
   <% @todos.each do |todo| %>
-      <tr>
-        <td><i class="icon-star<%= todo.important ? '' : '-empty' %>"></i></td>
+      <tr data-id="<%= todo.id %>">
+        <td class="importance_td">
+          <i class="icon-star<%= todo.important ? '' : '-empty' %> importance"></i>
+        </td>
         <td><%= todo.title %></td>
         <td><%= todo.due_date.strftime('%d.%m.%Y') if todo.due_date %></td>
-        <td data-id="<%= todo.id %>"><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
+        <td><%= check_box_tag 'task', todo.done, todo.done, class: "done_state" %></td>
       </tr>
   <% end %>
 </table>
