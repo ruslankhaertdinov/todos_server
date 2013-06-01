@@ -50,6 +50,7 @@ $(document).ready ->
 
   $(document).on 'keydown', '#todo_title', ->
     if event.which == 13
-      $('form#new_todo').submit
-
+      $('form#new_todo').submit ->
+        if $('#todo_title').val().length == 0
+          return false
 
