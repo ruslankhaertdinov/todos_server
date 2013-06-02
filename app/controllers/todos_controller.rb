@@ -29,7 +29,29 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(params[:todo])
     @todo.save
-    get_variables
+    render json: @todo
+  end
+
+  def show
+    @todo = Todo.find(params[:id])
+    render json: @todo
+  end
+
+  def edit
+    @todo = Todo.find(params[:id])
+    render json: @todo
+  end
+
+  def update
+    @todo = Todo.find(params[:id])
+    @todo.update_attributes(params[:todo])
+    render json: @todo
+  end
+
+  def destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
+    render json: { head: no_content }
   end
 
   private
