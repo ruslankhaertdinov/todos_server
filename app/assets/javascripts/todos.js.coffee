@@ -43,14 +43,25 @@ $(document).ready ->
     $(this).html($('<input type="text"/>').val(title_old))
     el = "tr[data-id=#{task_id}] td.title"
     input = el + " input"
+    $(input).focus()
 
     $(document).on 'keydown', input, (event) ->
       title_new = $(input).val()
+
       if event.which == 13 and title_new and title_new.length
+        $(document).off('focusout')
+        $(document).off('keydown')
         $(el).text(title_new)
         saveChanges(title: title_new, id: task_id)
       else if event.which == 27
+        $(document).off('focusout')
+        $(document).off('keydown')
         $(el).text(title_old)
+
+    $(document).on 'focusout', input, ->
+      $(document).off('keydown')
+      $(document).off('focusout')
+      $(el).text(title_old)
 
   $(document).on 'keydown', '#todo_title', ->
     if event.which == 13
