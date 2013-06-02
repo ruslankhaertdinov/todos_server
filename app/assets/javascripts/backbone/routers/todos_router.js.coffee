@@ -4,19 +4,17 @@ class TodoServer.Routers.TodosRouter extends Backbone.Router
     @todos.reset options.todos
 
   routes:
-    "new"      : "newTodo"
     "index"    : "index"
     ":id/edit" : "edit"
     ":id"      : "show"
     ".*"        : "index"
 
-  newTodo: ->
-    @view = new TodoServer.Views.Todos.NewView(collection: @todos)
-    $("#todos").html(@view.render().el)
-
   index: ->
-    @view = new TodoServer.Views.Todos.IndexView(todos: @todos)
-    $("#todos").html(@view.render().el)
+    @new_view = new TodoServer.Views.Todos.NewView(collection: @todos)
+    $("#todos_form").html(@new_view.render().el)
+
+    @index_view = new TodoServer.Views.Todos.IndexView(todos: @todos)
+    $("#todos_table").append(@index_view.render().el)
 
   show: (id) ->
     todo = @todos.get(id)

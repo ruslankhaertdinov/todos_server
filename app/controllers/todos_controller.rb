@@ -1,7 +1,7 @@
 class TodosController < ApplicationController
 
   def index
-    get_variables
+    @todos = Todo.order_by_importance
   end
 
   def change

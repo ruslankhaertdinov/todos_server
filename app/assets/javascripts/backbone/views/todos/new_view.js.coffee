@@ -9,7 +9,6 @@ class TodoServer.Views.Todos.NewView extends Backbone.View
   constructor: (options) ->
     super(options)
     @model = new @collection.model()
-
     @model.bind("change:errors", () =>
       this.render()
     )
@@ -19,11 +18,9 @@ class TodoServer.Views.Todos.NewView extends Backbone.View
     e.stopPropagation()
 
     @model.unset("errors")
-
     @collection.create(@model.toJSON(),
       success: (todo) =>
         @model = todo
-        window.location.hash = "/#{@model.id}"
 
       error: (todo, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
