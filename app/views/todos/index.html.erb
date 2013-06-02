@@ -1,3 +1,9 @@
-<div id="index_page">
-  <%= render 'index' %>
-</div>
+<div id="todos"></div>
+
+<script type="text/javascript">
+    $(function() {
+        // Blog is the app name
+        window.router = new TodoServer.Routers.TodosRouter({todos: <%= @todos.to_json.html_safe -%>});
+        Backbone.history.start();
+    });
+</script>
