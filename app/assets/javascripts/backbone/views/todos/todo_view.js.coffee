@@ -9,8 +9,9 @@ class TodoServer.Views.Todos.TodoView extends Backbone.View
   tagName: "tr"
 
   destroy: () ->
-    @model.destroy()
-    this.remove()
+    if confirm('Delete this todo?')
+      @model.destroy()
+      this.remove()
 
     return false
 
