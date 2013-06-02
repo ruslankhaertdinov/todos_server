@@ -5,16 +5,19 @@ $(document).ready ->
   saveChanges = (opts) ->
     $.get "/todos/change", (opts)
 
+  #changing done_state of todo
   $(document).on 'click', '.done_state', ->
     task_id = $(this).parents('tr').data('id')
     done = $(this).is(':checked')
     saveChanges(done: done, id: task_id)
 
+  #changing importance of todo
   $(document).on 'click', 'td.importance', ->
     task_id = $(this).parents('tr').data('id')
     important = $(this).children('i').hasClass('icon-star-empty')
     saveChanges(important: important, id: task_id)
 
+  #mark all todos as done
   $(document).on 'change', '#mark_all', ->
     all_checkboxes = $('.done_state')
     if $(this).is(':checked')
@@ -33,10 +36,12 @@ $(document).ready ->
       mark_all: $(this).is(':checked')
     $.get "/todos/mark_all", data
 
+  #clear all done todos
   $(document).on 'click', '#clear_complete_btn', ->
     if $('input.done_state:checked').length > 0
       $.get "/todos/clear_complete"
 
+  #editing exist todos
   $(document).on 'dblclick', 'td.title', ->
     title_old = $(this).text()
     task_id = $(this).parents('tr').data('id')
@@ -63,6 +68,7 @@ $(document).ready ->
       $(document).off('focusout')
       $(el).text(title_old)
 
+  #handling new todo form
   $(document).on 'keydown', '#todo_title', ->
     if event.which == 13
       $('form#new_todo').submit ->
