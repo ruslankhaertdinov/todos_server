@@ -5,9 +5,17 @@ class TodoServer.Views.Todos.NewView extends Backbone.View
 
   el: '.new_title'
 
-#  events:
-#    "submit #new-todo": "save"
+  events:
+    "keydown #todo_title": "save"
 
   render: ->
     $(@el).html(@template)
-#    $(@el).html('@template')
+
+  save: (event) ->
+    todo_title = $('#todo_title').val()
+    if (event.which == 13) and (todo_title.length)
+      new_todo = new TodoServer.Models.Todo(title: todo_title)
+      new_todo.save {},
+        success: (model, response, options) ->
+          console.log model
+          $('#todo_title').val('')
