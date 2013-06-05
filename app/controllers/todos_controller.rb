@@ -1,7 +1,10 @@
 class TodosController < ApplicationController
 
+  respond_to :html, :json
+
   def index
     @todos = Todo.order_by_importance
+    respond_with @todos
   end
 
   def change

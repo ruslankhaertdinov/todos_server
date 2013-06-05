@@ -1,10 +1,10 @@
-<div id="todos_form"></div>
-<div id="todos_table"></div>
+<div class="new_title"></div>
+<table class="table table-hover" id="todos_table"></table>
+<div class="clear_complete"></div>
 
 <script type="text/javascript">
-    $(function() {
-        // Blog is the app name
-        window.router = new TodoServer.Routers.TodosRouter({todos: <%= @todos.to_json.html_safe -%>});
+    $(function () {
+        window.router = new TodoServer.Routers.TodosRouter();
         Backbone.history.start();
     });
 </script>
