@@ -1,12 +1,5 @@
-<p>
-  <b>Title:</b>
-  <%= title %>
-</p>
-
-<p>
-  <b>Done:</b>
-  <%= done %>
-</p>
-
-
-<a href="#/index">Back</a>
+<td class="width_14"><%= todo.done %></td>
+<td><%= todo.title %></td>
+<td class="width_14">
+  <a href="#/<%= todo.id %>/destroy" class="destroy">Destroy</a>
+</td>

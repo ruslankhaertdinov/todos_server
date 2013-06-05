@@ -7,15 +7,10 @@ class TodoServer.Routers.TodosRouter extends Backbone.Router
     "/"        : "index"
 
   index: ->
-    console.log 'index'
-
     @new_todo_form = new TodoServer.Views.Todos.NewView().render()
-
     @todos = new TodoServer.Collections.TodosCollection()
-    @todos.fetch  =>
+    @todos.fetch
       success: (collection, response, options) ->
-        console.log collection
-        console.log response
-
-
+        @todos_view = new TodoServer.Views.Todos.CollectionView(collection: collection)
+        @todos_view.render()
     @clear_complete = new TodoServer.Views.Todos.ClearCompleteView().render()
