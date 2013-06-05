@@ -17,5 +17,6 @@ class TodoServer.Views.Todos.NewView extends Backbone.View
       new_todo = new TodoServer.Models.Todo(title: todo_title)
       new_todo.save {},
         success: (model, response, options) ->
-          console.log model
+          show_view = new TodoServer.Views.Todos.ShowView(model: model)
+          $('#todos_table').prepend(show_view.render().el)
           $('#todo_title').val('')
