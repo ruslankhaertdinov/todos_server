@@ -46,9 +46,12 @@ class TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find(params[:id])
-    @todo.update_attributes(params[:todo])
-    render json: @todo
+    todo = Todo.find(params[:id])
+    todo.done = params[:done] if params[:done].present?
+    todo.important = params[:important] if params[:important].present?
+    todo.title = params[:title] if params[:title].present?
+    todo.save
+    render json: todo
   end
 
   def destroy

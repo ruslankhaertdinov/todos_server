@@ -1,4 +1,11 @@
-<td class="width_14"><%= todo.done %></td>
+<td class="width_14">
+  <% if (todo.done) { %>
+    <input class="done_state" name="task" type="checkbox" checked="checked">
+  <% } else { %>
+    <input class="done_state" name="task" type="checkbox">
+  <% } %>
+
+</td>
 <td><%= todo.title %></td>
 <td class="width_14">
   <a href="#/<%= todo.id %>/destroy" class="destroy">Destroy</a>
