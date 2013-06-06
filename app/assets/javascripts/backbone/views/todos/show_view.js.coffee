@@ -9,6 +9,7 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
 
   initialize: (options) ->
     @todo = options.model
+    @todos = options.collection
 
   render: ->
     $(@el).html(@template(todo: @todo.attributes))
@@ -16,10 +17,15 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
 
   toggle_state: ->
     @todo.set(done: !@todo.get('done'))
-    @todo.save()
-    @render()
+    @save_this(@todo)
 
   toggle_importance: ->
     @todo.set(important: !@todo.get('important'))
-    @todo.save()
-    @render()
+    @save_this(@todo)
+
+  save_this: (todo) ->
+    that = @
+    todo.save {},
+      success: (model, response, options) ->
+        $('#todos_table tbody').empty()
+        that.todos.reset(response)

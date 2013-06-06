@@ -12,7 +12,7 @@ class TodoServer.Views.Todos.CollectionView extends Backbone.View
     @addAll()
 
   addOne: (model) =>
-    @todo_show = new TodoServer.Views.Todos.ShowView(model: model)
+    @todo_show = new TodoServer.Views.Todos.ShowView(model: model, collection: @collection)
     @$el.append(@todo_show.render().el)
 
   addAll: =>

@@ -49,7 +49,7 @@ class TodosController < ApplicationController
   def update
     todo = Todo.find(params[:id])
     todo.update_attributes(params[:todo])
-    render json: todo
+    render json: ordered_todos
   end
 
   def destroy
