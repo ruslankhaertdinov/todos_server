@@ -21,6 +21,7 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
   toggle_state: ->
     @todo.set(done: !@todo.get('done'))
     @save_this(@todo)
+    @update_stats()
 
   toggle_importance: ->
     @todo.set(important: !@todo.get('important'))
@@ -48,3 +49,11 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
   break_edit: ->
     @$('.title_span').show()
     @$('.title_edit').hide()
+
+  update_stats: ->
+    unchecked = $("input.done_state:not(:checked)").length
+    if unchecked is 1
+      text = 'item left'
+    else
+      text = 'items left'
+    $('#items_left').text(unchecked + ' ' + text)
