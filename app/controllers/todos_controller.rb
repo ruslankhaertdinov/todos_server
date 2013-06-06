@@ -48,10 +48,7 @@ class TodosController < ApplicationController
 
   def update
     todo = Todo.find(params[:id])
-    todo.done = params[:done] if params[:done].present?
-    todo.important = params[:important] if params[:important].present?
-    todo.title = params[:title] if params[:title].present?
-    todo.save
+    todo.update_attributes(params[:todo])
     render json: todo
   end
 
@@ -68,5 +65,9 @@ class TodosController < ApplicationController
     @todos = Todo.order_by_importance
     @items_left = Todo.where(done: false).count
     @items_complete = Todo.where(done: true).count
+  end
+
+  def ordered_todos
+    Todo.order_by_importance
   end
 end

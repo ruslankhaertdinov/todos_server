@@ -7,6 +7,10 @@
 
 </td>
 <td><%= todo.title %></td>
-<td class="width_14">
-  <a href="#/<%= todo.id %>/destroy" class="destroy">Destroy</a>
+<td class="width_14 importance">
+  <% if (todo.important) { %>
+    <i class="icon-star"></i>
+  <% } else { %>
+    <i class="icon-star-empty"></i>
+  <% } %>
 </td>
