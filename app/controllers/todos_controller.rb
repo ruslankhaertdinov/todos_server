@@ -26,7 +26,8 @@ class TodosController < ApplicationController
 
   def clear_complete
     Todo.where(done: true).delete_all
-    get_variables
+    todos = Todo.order_by_importance
+    render json: todos
   end
 
   def create

@@ -1,6 +1,9 @@
 class TodoServer.Models.Todo extends Backbone.Model
   url: ->
-    url = '/todos/' + @get('id')
+    url = if @get('id')
+      '/todos/' + @get('id')
+    else
+      '/todos/'
     url
 
 class TodoServer.Collections.TodosCollection extends Backbone.Collection

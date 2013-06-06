@@ -5,8 +5,20 @@ class TodoServer.Views.Todos.ClearCompleteView extends Backbone.View
 
   el: '.clear_complete'
 
-  #  events:
-  #    "submit #new-todo": "save"
+  events:
+    "click #clear_complete_btn": "clear_complete"
+
+  initialize: (options) ->
+    @todos = options.todos
 
   render: ->
     $(@el).html(@template)
+
+  clear_complete: ->
+    if $('input.done_state:checked').length
+      that = @
+      $.get("/todos/clear_complete")
+        .success (response) ->
+          $('#todos_table tbody').empty()
+          that.todos.reset(response)
+

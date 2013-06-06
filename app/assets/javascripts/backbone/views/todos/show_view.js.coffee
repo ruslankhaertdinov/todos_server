@@ -3,7 +3,6 @@ TodoServer.Views.Todos ||= {}
 class TodoServer.Views.Todos.ShowView extends Backbone.View
   template: JST["backbone/templates/todos/show"]
   tagName: 'tr'
-
   events:
     'click .done_state': 'toggle_state'
 
@@ -15,13 +14,6 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
     return this
 
   toggle_state: ->
-    response = $.ajax(
-      url: @todo.url()
-      type: 'PUT'
-      dataType: 'json'
-      async: false
-      data: (done: !@todo.get('done'))
-    ).responseText
-    obj = $.parseJSON(response)
-    @todo.set(obj)
+    @todo.set(done: !@todo.get('done'))
+    @todo.save()
     @render()
