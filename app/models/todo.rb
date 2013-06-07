@@ -3,9 +3,6 @@ class Todo < ActiveRecord::Base
 
   before_save :set_order_value
 
-  #scope :ordered, -> { order('due_date, created_at') }
-  #scope :with_due_date, -> { where("due_date IS NOT NULL").ordered }
-  #scope :without_due_date, -> { where(due_date: nil).ordered }
   scope :order_by_importance, -> { order('done ASC, important DESC, created_at ASC') }
 
   protected

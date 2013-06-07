@@ -1,3 +1,11 @@
-<div id="index_page">
-  <%= render 'index' %>
-</div>
+<div class="new_title"></div>
+<table class="table table-hover" id="todos_table"></table>
+<div id="items_left"></div>
+<div class="clear_complete"></div>
+
+<script type="text/javascript">
+    $(function () {
+        window.router = new TodoServer.Routers.TodosRouter();
+        Backbone.history.start();
+    });
+</script>

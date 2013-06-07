@@ -14,5 +14,10 @@
 //= require jquery_ujs
 //= require jquery-ui-1.10.3.custom
 //= require bootstrap.min
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require backbone/todo_server
 //= require_tree .
 

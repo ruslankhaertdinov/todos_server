@@ -1,0 +1,20 @@
+<td class="width_14">
+  <% if (todo.done) { %>
+    <input class="done_state" name="task" type="checkbox" checked="checked">
+  <% } else { %>
+    <input class="done_state" name="task" type="checkbox">
+  <% } %>
+</td>
+<td class="title">
+  <span class="title_span">
+    <%= todo.title %>
+  </span>
+  <input type="text" value="<%= todo.title %>" style="display: none;" class="title_edit">
+</td>
+<td class="width_14 importance">
+  <% if (todo.important) { %>
+    <i class="icon-star"></i>
+  <% } else { %>
+    <i class="icon-star-empty"></i>
+  <% } %>
+</td>
