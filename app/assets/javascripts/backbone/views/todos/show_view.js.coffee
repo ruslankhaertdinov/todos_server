@@ -7,7 +7,7 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
     'click .done_state'   : 'toggle_state'
     'click .importance'   : 'toggle_importance'
     'dblclick .title'     : 'make_editable'
-    'keydown .title_edit' : 'editing_title'
+    'keydown .title_edit' : 'edit_title'
     'focusout .title_edit': 'break_edit',
 
   initialize: (options) ->
@@ -38,7 +38,7 @@ class TodoServer.Views.Todos.ShowView extends Backbone.View
     @$('.title_span').hide()
     @$('.title_edit').show().focus()
 
-  editing_title: (event) ->
+  edit_title: (event) ->
     new_title = @$('.title_edit').val()
     if (event.which == 13) and new_title.length
       @todo.set(title: new_title)
