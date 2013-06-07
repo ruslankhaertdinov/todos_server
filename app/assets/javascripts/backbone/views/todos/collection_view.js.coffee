@@ -17,4 +17,6 @@ class TodoServer.Views.Todos.CollectionView extends Backbone.View
 
   addAll: =>
     @collection.forEach(@addOne, @)
+    @collection.updateStats()
+
 

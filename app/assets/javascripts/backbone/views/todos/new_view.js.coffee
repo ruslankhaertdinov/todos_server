@@ -13,6 +13,7 @@ class TodoServer.Views.Todos.NewView extends Backbone.View
 
   render: ->
     $(@el).html(@template)
+    @
 
   save: (event) ->
     todo_title = $('#todo_title').val()
