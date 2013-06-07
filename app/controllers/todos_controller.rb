@@ -3,8 +3,7 @@ class TodosController < ApplicationController
   respond_to :html, :json
 
   def index
-    @todos = Todo.order_by_importance
-    respond_with @todos
+    respond_with ordered_todos
   end
 
   def clear_complete
@@ -13,9 +12,9 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new(params[:todo])
-    @todo.save
-    render json: @todo
+    todo = Todo.new(params[:todo])
+    todo.save
+    render json: ordered_todos
   end
 
   def update
