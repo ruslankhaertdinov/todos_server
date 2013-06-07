@@ -10,7 +10,6 @@ class TodoServer.Views.Todos.CollectionView extends Backbone.View
 
   render: =>
     @addAll()
-    @todo_show.update_stats()
 
   addOne: (model) =>
     @todo_show = new TodoServer.Views.Todos.ShowView(model: model, collection: @collection)
