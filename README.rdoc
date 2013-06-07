@@ -2,3 +2,5 @@
 
 This app based on Ruby on Rails and use Backbone for more interactivity.
 You can add, edit todos, change their importance and remove done todos.
+
+Demo app available on: http://todo-server.herokuapp.com/
