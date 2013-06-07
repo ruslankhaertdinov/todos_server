@@ -1,9 +1,7 @@
 class TodoServer.Routers.TodosRouter extends Backbone.Router
 
   routes:
-    "index"    : "index"
     ""         : "index"
-    ".*"       : "index"
     "/"        : "index"
 
   index: ->
